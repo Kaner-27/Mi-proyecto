@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>La mujer que amo</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+  --bg1: #f8e1f4;
+  --bg2: #e0c3fc;
+  --primary: #5a0f4f;
+  --text: #6d4c6d;
+  --card: rgba(255, 255, 255, 0.72);
+  --card-strong: rgba(255, 255, 255, 0.9);
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
+  --radius: 22px;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(to right,var(--bg1),var(--bg2));
+  color:var(--text);
+  min-height:100vh;
+  text-align:center;
+}
+
+/* LOGIN */
+
+#loginScreen{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(to right,var(--bg1),var(--bg2));
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.login-box{
+  width:330px;
+  background:white;
+  padding:35px;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+.login-box h2{
+  color:var(--primary);
+  margin-bottom:20px;
+}
+
+.login-box input{
+  width:100%;
+  padding:13px;
+  margin:10px 0;
+  border:none;
+  border-radius:12px;
+  background:#f2f2f2;
+  font-size:16px;
+}
+
+.login-box button{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:12px;
+  background:#7b1b67;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+  margin-top:10px;
+}
+
+.login-box button:hover{
+  background:#5a0f4f;
+}
+
+#error{
+  color:red;
+  margin-top:10px;
+}
+
+/* PAGINA */
+
+.container{
+  width:min(1050px,92vw);
+  margin:auto;
+  padding:28px 0 60px;
+  display:none;
+}
+
+header{
+  padding:22px 0 8px;
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  margin:12px 0;
+  color:var(--primary);
+}
+
+header p{
+  font-size:1.1rem;
+}
+
+.heroCard{
+  margin:22px 0 18px;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:22px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  align-items:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.12);
+}
+
+.heroActions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:none;
+  cursor:pointer;
+  padding:12px 16px;
+  border-radius:14px;
+  font-weight:600;
+  color:#fff;
+  background:linear-gradient(135deg,#7b1b67,#c45bb8);
+}
+
+.btn.secondary{
+  background:white;
+  color:var(--primary);
+}
+
+.galeria{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:20px;
+}
+
+.foto{
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+}
+
+.foto img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.texto{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding:14px;
+  background:rgba(0,0,0,0.6);
+  color:white;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin-top:20px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:22px;
+  padding:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:18px;
+}
+
+video{
+  width:100%;
+  border-radius:18px;
+  margin-top:10px;
+}
+
+.footerMsg{
+  background:white;
+  padding:20px;
+  border-radius:22px;
+  margin-top:20px;
+}
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modal-overlay.open{
+  display:flex;
+}
+
+.modal{
+  background:white;
+  padding:20px;
+  border-radius:22px;
+  width:90%;
+  max-width:700px;
+}
+
+.modal img{
+  width:100%;
+  border-radius:18px;
+}
+
+.icon-btn{
+  margin-top:15px;
+  padding:10px 15px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  background:#7b1b67;
+  color:white;
+}
+
+@media(max-width:900px){
+
+  .galeria{
+    grid-template-columns:1fr;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .heroCard{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div id="loginScreen">
+
+  <div class="login-box">
+
+    <h2>Acceso Privado 💖</h2>
+
+    <input type="text" id="usuario" placeholder="Usuario">
+
+    <input type="password" id="password" placeholder="Contraseña">
+
+    <button onclick="login()">Entrar</button>
+
+    <p id="error"></p>
+
+  </div>
+
+</div>
+
+<!-- PAGINA -->
+
+<div class="container" id="pagina">
+
+<header>
+
+<h1>El amor de mi vida 💙</h1>
+
+<p>Cada momento contigo es mi favorito ✨</p>
+
+<div class="heroCard">
+
+<div>
+<h3>Toca un botón 💖</h3>
+<p>Y aparece una foto nuestra 💙</p>
+</div>
+
+<div class="heroActions">
+<button class="btn" data-open-modal>Ver nuestra foto</button>
+<button class="btn secondary" data-open-modal>Recuerdo especial</button>
+</div>
+
+</div>
+
+</header>
+
+<section>
+
+<h3>Galería 💫</h3>
+
+<div class="galeria">
+
+<div class="foto">
+<img src="ojito.jpeg">
+<div class="texto">Tu mirada 😍</div>
+</div>
+
+<div class="foto">
+<img src="besito.jpeg">
+<div class="texto">Nuestros besitos 💋</div>
+</div>
+
+<div class="foto">
+<img src="besito1.jpeg">
+<div class="texto">Momentos inolvidables 💙</div>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h3>Nuestros momentos 💙</h3>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="ojito.jpeg">
+
+<h4>Inicio 💙</h4>
+
+<p>Un comienzo bonito lleno de amor.</p>
+
+<video controls>
+<source src="video.mp4" type="video/mp4">
+</video>
+
+</div>
+
+<div class="card">
+
+<img src="besito.jpeg">
+
+<h4>Especial 🥰</h4>
+
+<p>Risas, abrazos y besitos.</p>
+
+<video controls>
+<source src="mi mujer.mp4" type="video/mp4">
+</video>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h3>Para siempre 💍</h3>
+
+<div class="footerMsg">
+Prometo seguir creando recuerdos contigo 💙
+</div>
+
+</section>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modalOverlay">
+
+<div class="modal">
+
+<img src="foto.jpeg" id="modalImage">
+
+<button class="icon-btn" id="cerrar">Cerrar</button>
+
+</div>
+
+</div>
+
+<script>
+
+/* LOGIN */
+
+function login(){
+
+  const usuario = document.getElementById('usuario').value;
+  const password = document.getElementById('password').value;
+
+  if(usuario === 'miamor' && password === '102709'){
+
+    document.getElementById('loginScreen').style.display = 'none';
+
+    document.getElementById('pagina').style.display = 'block';
+
+  }else{
+
+    document.getElementById('error').innerText = 'Usuario o contraseña incorrectos';
+
+  }
+
+}
+
+/* MODAL */
+
+const overlay = document.getElementById('modalOverlay');
+
+const modalImg = document.getElementById('modalImage');
+
+const botones = document.querySelectorAll('[data-open-modal]');
+
+const cerrar = document.getElementById('cerrar');
+
+const imagenes = [
+  'foto.jpeg',
+  'besito.jpeg',
+  'besito1.jpeg',
+  'ojito.jpeg'
+];
+
+let ultima = -1;
+
+function siguienteImagen(){
+
+  let nueva = ultima;
+
+  while(nueva === ultima){
+
+    nueva = Math.floor(Math.random() * imagenes.length);
+
+  }
+
+  ultima = nueva;
+
+  return imagenes[nueva];
+
+}
+
+function abrirModal(){
+
+  modalImg.src = siguienteImagen();
+
+  overlay.classList.add('open');
+
+}
+
+function cerrarModal(){
+
+  overlay.classList.remove('open');
+
+}
+
+botones.forEach(btn => {
+
+  btn.addEventListener('click', abrirModal);
+
+});
+
+cerrar.addEventListener('click', cerrarModal);
+
+overlay.addEventListener('click', (e)=>{
+
+  if(e.target === overlay){
+
+    cerrarModal();
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
+
