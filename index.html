@@ -11,13 +11,9 @@
 <style>
 
 :root{
-  --primary:#5a0f4f;
-  --primary2:#b83db3;
+  --primary:#7b1b67;
+  --primary2:#c45bb8;
   --text:#5c3a5c;
-  --card:rgba(255,255,255,0.75);
-  --shadow-sm:0 10px 25px rgba(0,0,0,0.10);
-  --shadow-md:0 18px 50px rgba(0,0,0,0.18);
-  --radius:22px;
 }
 
 *{
@@ -28,11 +24,9 @@
 
 body{
   font-family:'Poppins',sans-serif;
-  min-height:100vh;
-  color:var(--text);
-  overflow-x:hidden;
   background:linear-gradient(135deg,#f8e1f4,#e0c3fc);
-  position:relative;
+  overflow-x:hidden;
+  color:var(--text);
 }
 
 /* ================= COLLAGE ================= */
@@ -40,8 +34,8 @@ body{
 .background-collage{
   position:fixed;
   inset:0;
+  z-index:-1;
   overflow:hidden;
-  z-index:-2;
 }
 
 .background-collage::after{
@@ -53,6 +47,7 @@ body{
 }
 
 .background-collage img{
+
   position:absolute;
 
   width:220px;
@@ -62,39 +57,33 @@ body{
 
   border-radius:24px;
 
-  box-shadow:0 12px 35px rgba(0,0,0,0.18);
+  border:4px solid rgba(255,255,255,0.5);
 
-  border:4px solid rgba(255,255,255,0.6);
+  box-shadow:0 10px 30px rgba(0,0,0,0.18);
 
-  transform:rotate(var(--rotate));
-
-  opacity:0.95;
 }
 
 /* POSICIONES */
 
-.c1{top:2%;left:2%;--rotate:-8deg;}
-.c2{top:8%;left:25%;--rotate:6deg;}
-.c3{top:5%;right:12%;--rotate:-5deg;}
-.c4{top:30%;left:8%;--rotate:8deg;}
-
-.c5{top:35%;left:38%;--rotate:-6deg;}
-.c6{top:30%;right:5%;--rotate:7deg;}
-.c7{bottom:18%;left:4%;--rotate:-7deg;}
-.c8{bottom:10%;left:30%;--rotate:5deg;}
-
-.c9{bottom:12%;right:10%;--rotate:-8deg;}
-.c10{top:55%;right:28%;--rotate:6deg;}
-.c11{top:60%;left:18%;--rotate:-5deg;}
-.c12{bottom:2%;right:35%;--rotate:7deg;}
+.c1{top:2%;left:2%;transform:rotate(-8deg);}
+.c2{top:5%;left:25%;transform:rotate(6deg);}
+.c3{top:4%;right:12%;transform:rotate(-5deg);}
+.c4{top:28%;left:6%;transform:rotate(8deg);}
+.c5{top:35%;left:35%;transform:rotate(-6deg);}
+.c6{top:30%;right:5%;transform:rotate(7deg);}
+.c7{bottom:18%;left:4%;transform:rotate(-7deg);}
+.c8{bottom:10%;left:30%;transform:rotate(5deg);}
+.c9{bottom:12%;right:10%;transform:rotate(-8deg);}
+.c10{top:55%;right:28%;transform:rotate(6deg);}
+.c11{top:60%;left:18%;transform:rotate(-5deg);}
+.c12{bottom:2%;right:35%;transform:rotate(7deg);}
 
 /* ================= LOGIN ================= */
 
 #loginScreen{
+
   position:fixed;
   inset:0;
-
-  z-index:9999;
 
   display:flex;
   justify-content:flex-end;
@@ -102,33 +91,25 @@ body{
 
   padding:30px;
 
-  background:rgba(255,255,255,0.04);
-
   backdrop-filter:blur(2px);
-}
 
-.login-shell{
-  width:100%;
-  display:flex;
-  justify-content:flex-end;
-  align-items:center;
 }
 
 .login-card{
+
   width:380px;
   max-width:95vw;
+
+  background:rgba(255,255,255,0.75);
 
   padding:32px;
 
   border-radius:28px;
 
-  background:rgba(255,255,255,0.72);
-
-  box-shadow:var(--shadow-md);
-
   backdrop-filter:blur(14px);
 
-  border:1px solid rgba(255,255,255,0.5);
+  box-shadow:0 15px 40px rgba(0,0,0,0.18);
+
 }
 
 .login-card h2{
@@ -137,13 +118,14 @@ body{
 }
 
 .subtitle{
-  margin-bottom:18px;
-  color:rgba(90,15,79,0.75);
+  margin-bottom:20px;
   font-weight:600;
 }
 
-.login-box input{
+.login-card input{
+
   width:100%;
+
   padding:14px;
 
   margin:10px 0;
@@ -152,31 +134,40 @@ body{
 
   border-radius:15px;
 
-  background:rgba(255,255,255,0.9);
-
   outline:none;
 
-  font-size:15px;
+  background:white;
+
 }
 
-.login-box button{
+.login-card button{
+
   width:100%;
-  margin-top:14px;
+
   padding:14px;
+
   border:none;
+
   border-radius:15px;
+
+  margin-top:14px;
+
   cursor:pointer;
+
   background:linear-gradient(135deg,var(--primary),var(--primary2));
+
   color:white;
+
   font-weight:800;
+
   font-size:16px;
+
 }
 
 #error{
   color:#d11b4a;
-  margin-top:12px;
+  margin-top:10px;
   font-weight:700;
-  min-height:22px;
 }
 
 /* ================= CONTENIDO ================= */
@@ -193,28 +184,36 @@ header{
 }
 
 h1{
-  font-family:'Playfair Display',serif;
   font-size:clamp(2rem,4vw,3.5rem);
+  font-family:'Playfair Display',serif;
   color:var(--primary);
-  margin-bottom:10px;
 }
 
 header p{
-  font-size:1.1rem;
+  margin-top:10px;
   font-weight:600;
 }
 
+/* ================= HERO ================= */
+
 .heroCard{
-  margin-top:24px;
-  background:var(--card);
-  border-radius:var(--radius);
+
+  margin-top:25px;
+
+  background:rgba(255,255,255,0.75);
+
   padding:25px;
-  box-shadow:var(--shadow-sm);
+
+  border-radius:24px;
 
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:20px;
+
   align-items:center;
+
 }
 
 .heroActions{
@@ -225,13 +224,21 @@ header p{
 }
 
 .btn{
+
   padding:13px 18px;
+
   border:none;
+
   border-radius:16px;
-  background:linear-gradient(135deg,#7b1b67,#c45bb8);
-  color:white;
-  font-weight:800;
+
   cursor:pointer;
+
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+
+  color:white;
+
+  font-weight:800;
+
 }
 
 .btn.secondary{
@@ -242,7 +249,7 @@ header p{
 /* ================= GALERIA ================= */
 
 section{
-  margin-top:28px;
+  margin-top:30px;
 }
 
 section h3{
@@ -251,99 +258,147 @@ section h3{
 }
 
 .galeria{
+
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   gap:18px;
+
 }
 
 .foto{
+
   overflow:hidden;
+
   border-radius:22px;
+
   background:white;
-  box-shadow:var(--shadow-sm);
+
+  box-shadow:0 10px 25px rgba(0,0,0,0.12);
+
 }
 
 .foto img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
-  transition:.4s;
-}
 
-.foto:hover img{
-  transform:scale(1.06);
+  width:100%;
+
+  height:250px;
+
+  object-fit:cover;
+
 }
 
 .texto{
+
   padding:14px;
-  background:linear-gradient(135deg,#7b1b67,#c45bb8);
+
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+
   color:white;
+
   font-weight:800;
+
   text-align:center;
+
 }
 
-/* FRASES */
-
 .frase{
+
   padding:16px;
+
   text-align:center;
+
   font-size:15px;
+
   font-weight:600;
+
   color:#6b4d6b;
+
   line-height:1.5;
+
 }
 
 /* ================= DIARIO ================= */
 
 .diario-box{
-  background:rgba(255,255,255,0.80);
-  padding:24px;
+
+  background:rgba(255,255,255,0.82);
+
+  padding:25px;
+
   border-radius:24px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.12);
+
   backdrop-filter:blur(10px);
+
 }
 
 #diario{
+
   width:100%;
+
   min-height:220px;
+
   border:none;
+
   outline:none;
+
   resize:vertical;
+
   padding:18px;
+
   border-radius:18px;
+
   font-size:16px;
+
   font-family:'Poppins',sans-serif;
-  background:rgba(255,255,255,0.9);
-  color:#5c3a5c;
+
 }
 
 .guardar-btn{
-  margin-top:16px;
+
+  margin-top:15px;
+
   padding:13px 18px;
+
   border:none;
-  border-radius:16px;
-  background:linear-gradient(135deg,#7b1b67,#c45bb8);
-  color:white;
-  font-weight:800;
+
+  border-radius:15px;
+
   cursor:pointer;
+
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+
+  color:white;
+
+  font-weight:800;
+
 }
 
 #guardado-msg{
+
   margin-top:12px;
-  color:#7b1b67;
+
+  color:var(--primary);
+
   font-weight:700;
+
 }
 
 /* ================= MODAL ================= */
 
 .modal-overlay{
+
   position:fixed;
   inset:0;
+
   background:rgba(0,0,0,0.7);
+
   display:none;
+
   justify-content:center;
   align-items:center;
-  z-index:999;
+
 }
 
 .modal-overlay.open{
@@ -351,41 +406,49 @@ section h3{
 }
 
 .modal{
+
   width:90%;
   max-width:700px;
+
   background:white;
+
   padding:20px;
-  border-radius:26px;
+
+  border-radius:24px;
+
 }
 
 .modal img{
+
   width:100%;
-  border-radius:20px;
+
+  border-radius:18px;
+
 }
 
 .icon-btn{
-  margin-top:14px;
+
+  margin-top:15px;
+
   padding:12px 16px;
+
   border:none;
-  border-radius:15px;
-  background:#7b1b67;
+
+  border-radius:14px;
+
+  background:var(--primary);
+
   color:white;
+
   font-weight:800;
+
   cursor:pointer;
+
 }
 
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 
 @media(max-width:900px){
-
-  .background-collage img{
-    width:140px;
-    height:140px;
-  }
-
-  #loginScreen{
-    justify-content:center;
-  }
 
   .galeria{
     grid-template-columns:1fr;
@@ -393,6 +456,15 @@ section h3{
 
   .heroCard{
     grid-template-columns:1fr;
+  }
+
+  #loginScreen{
+    justify-content:center;
+  }
+
+  .background-collage img{
+    width:140px;
+    height:140px;
   }
 
 }
@@ -427,9 +499,7 @@ section h3{
 
 <div id="loginScreen">
 
-<div class="login-shell">
-
-<div class="login-card login-box">
+<div class="login-card">
 
 <h2>Acceso Privado 💖</h2>
 
@@ -451,9 +521,7 @@ Entrar
 
 </div>
 
-</div>
-
-<!-- ================= CONTENIDO ================= -->
+<!-- ================= PAGINA ================= -->
 
 <div class="container" id="pagina">
 
@@ -466,8 +534,11 @@ Entrar
 <div class="heroCard">
 
 <div>
+
 <h3>Toca un botón 💖</h3>
+
 <p>Y aparecerá una foto especial 💙</p>
+
 </div>
 
 <div class="heroActions">
@@ -499,7 +570,7 @@ Recuerdo especial
 <img src="ojito.jpeg">
 
 <div class="texto">
-Miradas que enamoran cada dia 😍
+Tu mirada 😍
 </div>
 
 <div class="frase">
@@ -541,7 +612,7 @@ Contigo hasta los momentos pequeños se vuelven mágicos 💫
 <img src="espejo.jpeg">
 
 <div class="texto">
-Juntos ❤
+Juntos 💕
 </div>
 
 <div class="frase">
@@ -555,7 +626,7 @@ Me encanta vernos juntos porque eres mi felicidad 🥰
 <img src="fiesta.jpeg">
 
 <div class="texto">
-Nuestra fiesta 😍
+Nuestra fiesta ✨
 </div>
 
 <div class="frase">
@@ -569,11 +640,11 @@ No importa dónde estemos, contigo siempre es especial 🎉
 <img src="lindos.jpeg">
 
 <div class="texto">
-Qué lindos 💙
+Qué lindos 💞
 </div>
 
 <div class="frase">
-Eres la persona más hermosa que mis ojos pudieron encontrar 💙
+Eres la persona más hermosa que mis ojos pudieron encontrar 💖
 </div>
 
 </div>
@@ -583,7 +654,7 @@ Eres la persona más hermosa que mis ojos pudieron encontrar 💙
 <img src="manos.jpeg">
 
 <div class="texto">
-De la mano siempre 💙
+Tomados de la mano 🤍
 </div>
 
 <div class="frase">
@@ -606,7 +677,7 @@ Mientras sea contigo quiero caminar toda la vida ✨
 
 <textarea
 id="diario"
-placeholder="Escribe aquí todo lo que sientes por mi... 💙">
+placeholder="Escribe algo bonito para tu pareja 💖">
 </textarea>
 
 <button class="guardar-btn" onclick="guardarTexto()">
@@ -637,46 +708,58 @@ Cerrar
 
 </div>
 
+<!-- ================= SCRIPT ================= -->
+
 <script>
 
-/* LOGIN */
+/* ================= LOGIN ================= */
 
 function login(){
 
   const usuario =
-  document.getElementById("usuario").value;
+  document.getElementById("usuario").value
 
   const password =
-  document.getElementById("password").value;
+  document.getElementById("password").value
 
-  if(usuario === "teamo27" && password === "102709"){
+  if(
+    usuario === "miamor"
+    &&
+    password === "102709"
+  ){
 
-    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById(
+      "loginScreen"
+    ).style.display = "none"
 
-    document.getElementById("pagina").style.display = "block";
+    document.getElementById(
+      "pagina"
+    ).style.display = "block"
 
   }else{
 
-    document.getElementById("error").innerText =
-    "Usuario o contraseña incorrectos";
+    document.getElementById(
+      "error"
+    ).innerText =
+    "Usuario o contraseña incorrectos"
 
   }
 
 }
 
-/* MODAL */
+/* ================= MODAL ================= */
 
 const overlay =
-document.getElementById("modalOverlay");
+document.getElementById("modalOverlay")
 
 const modalImg =
-document.getElementById("modalImage");
+document.getElementById("modalImage")
 
 const botones =
-document.querySelectorAll("[data-open-modal]");
+document.querySelectorAll("[data-open-modal]")
 
 const cerrar =
-document.getElementById("cerrar");
+document.getElementById("cerrar")
 
 const imagenes = [
 
@@ -689,95 +772,167 @@ const imagenes = [
   "lindos.jpeg",
   "manos.jpeg"
 
-];
+]
 
-let ultima = -1;
+let ultima = -1
 
 function siguienteImagen(){
 
-  let nueva = ultima;
+  let nueva = ultima
 
   while(nueva === ultima){
 
     nueva =
-    Math.floor(Math.random()*imagenes.length);
+    Math.floor(
+      Math.random()*imagenes.length
+    )
 
   }
 
-  ultima = nueva;
+  ultima = nueva
 
-  return imagenes[nueva];
+  return imagenes[nueva]
 
 }
 
 function abrirModal(){
 
-  modalImg.src = siguienteImagen();
+  modalImg.src =
+  siguienteImagen()
 
-  overlay.classList.add("open");
+  overlay.classList.add("open")
 
 }
 
 function cerrarModal(){
 
-  overlay.classList.remove("open");
+  overlay.classList.remove("open")
 
 }
 
 botones.forEach(btn=>{
 
-  btn.addEventListener("click",abrirModal);
+  btn.addEventListener(
+    "click",
+    abrirModal
+  )
 
-});
+})
 
-cerrar.addEventListener("click",cerrarModal);
+cerrar.addEventListener(
+  "click",
+  cerrarModal
+)
 
 overlay.addEventListener("click",(e)=>{
 
   if(e.target === overlay){
 
-    cerrarModal();
+    cerrarModal()
 
   }
 
-});
+})
 
-/* ================= DIARIO ================= */
+</script>
+
+<!-- ================= JSONBIN ================= -->
+
+<script>
+
+const BIN_ID =
+6a002424adc21f119a7b2436
+
+const API_KEY =
+$2a$10$6Sno123
 
 const diario =
-document.getElementById("diario");
+document.getElementById("diario")
 
-window.addEventListener("load",()=>{
+/* ================= CARGAR ================= */
 
-  const textoGuardado =
-  localStorage.getItem("nuestroDiario");
+async function cargarTexto(){
 
-  if(textoGuardado){
+  const response =
+  await fetch(
 
-    diario.value = textoGuardado;
+    `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`,
 
-  }
+    {
 
-});
+      headers:{
 
-function guardarTexto(){
+        "X-Master-Key":
+        API_KEY
 
-  localStorage.setItem(
-    "nuestroDiario",
-    diario.value
-  );
+      }
 
-  document.getElementById("guardado-msg")
-  .innerText = "Texto guardado 💖";
+    }
+
+  )
+
+  const data =
+  await response.json()
+
+  diario.value =
+  data.record.texto || ""
+
+}
+
+/* ================= GUARDAR ================= */
+
+async function guardarTexto(){
+
+  await fetch(
+
+    `https://api.jsonbin.io/v3/b/${BIN_ID}`,
+
+    {
+
+      method:"PUT",
+
+      headers:{
+
+        "Content-Type":
+        "application/json",
+
+        "X-Master-Key":
+        API_KEY
+
+      },
+
+      body:JSON.stringify({
+
+        texto:diario.value
+
+      })
+
+    }
+
+  )
+
+  document.getElementById(
+    "guardado-msg"
+  ).innerText =
+  "Guardado 💖"
 
   setTimeout(()=>{
 
-    document.getElementById("guardado-msg")
-    .innerText = "";
+    document.getElementById(
+      "guardado-msg"
+    ).innerText = ""
 
-  },2000);
+  },2000)
 
 }
+
+/* ================= AUTO CARGA ================= */
+
+cargarTexto()
+
+/* ================= TIEMPO REAL ================= */
+
+setInterval(cargarTexto,2000)
 
 </script>
 
