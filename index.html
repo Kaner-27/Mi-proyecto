@@ -47,20 +47,13 @@ body{
 }
 
 .background-collage img{
-
   position:absolute;
-
   width:220px;
   height:220px;
-
   object-fit:cover;
-
   border-radius:24px;
-
   border:4px solid rgba(255,255,255,0.5);
-
   box-shadow:0 10px 30px rgba(0,0,0,0.18);
-
 }
 
 /* POSICIONES */
@@ -81,35 +74,23 @@ body{
 /* ================= LOGIN ================= */
 
 #loginScreen{
-
   position:fixed;
   inset:0;
-
   display:flex;
   justify-content:flex-end;
   align-items:center;
-
   padding:30px;
-
   backdrop-filter:blur(2px);
-
 }
 
 .login-card{
-
   width:380px;
   max-width:95vw;
-
   background:rgba(255,255,255,0.75);
-
   padding:32px;
-
   border-radius:28px;
-
   backdrop-filter:blur(14px);
-
   box-shadow:0 15px 40px rgba(0,0,0,0.18);
-
 }
 
 .login-card h2{
@@ -123,45 +104,26 @@ body{
 }
 
 .login-card input{
-
   width:100%;
-
   padding:14px;
-
   margin:10px 0;
-
   border:none;
-
   border-radius:15px;
-
   outline:none;
-
   background:white;
-
 }
 
 .login-card button{
-
   width:100%;
-
   padding:14px;
-
   border:none;
-
   border-radius:15px;
-
   margin-top:14px;
-
   cursor:pointer;
-
   background:linear-gradient(135deg,var(--primary),var(--primary2));
-
   color:white;
-
   font-weight:800;
-
   font-size:16px;
-
 }
 
 #error{
@@ -197,23 +159,14 @@ header p{
 /* ================= HERO ================= */
 
 .heroCard{
-
   margin-top:25px;
-
   background:rgba(255,255,255,0.75);
-
   padding:25px;
-
   border-radius:24px;
-
   display:grid;
-
   grid-template-columns:1fr 1fr;
-
   gap:20px;
-
   align-items:center;
-
 }
 
 .heroActions{
@@ -224,21 +177,13 @@ header p{
 }
 
 .btn{
-
   padding:13px 18px;
-
   border:none;
-
   border-radius:16px;
-
   cursor:pointer;
-
   background:linear-gradient(135deg,var(--primary),var(--primary2));
-
   color:white;
-
   font-weight:800;
-
 }
 
 .btn.secondary{
@@ -258,147 +203,88 @@ section h3{
 }
 
 .galeria{
-
   display:grid;
-
   grid-template-columns:repeat(3,1fr);
-
   gap:18px;
-
 }
 
 .foto{
-
   overflow:hidden;
-
   border-radius:22px;
-
   background:white;
-
   box-shadow:0 10px 25px rgba(0,0,0,0.12);
-
 }
 
 .foto img{
-
   width:100%;
-
   height:250px;
-
   object-fit:cover;
-
 }
 
 .texto{
-
   padding:14px;
-
   background:linear-gradient(135deg,var(--primary),var(--primary2));
-
   color:white;
-
   font-weight:800;
-
   text-align:center;
-
 }
 
 .frase{
-
   padding:16px;
-
   text-align:center;
-
   font-size:15px;
-
   font-weight:600;
-
   color:#6b4d6b;
-
   line-height:1.5;
-
 }
 
 /* ================= DIARIO ================= */
 
 .diario-box{
-
   background:rgba(255,255,255,0.82);
-
   padding:25px;
-
   border-radius:24px;
-
   backdrop-filter:blur(10px);
-
 }
 
 #diario{
-
   width:100%;
-
   min-height:220px;
-
   border:none;
-
   outline:none;
-
   resize:vertical;
-
   padding:18px;
-
   border-radius:18px;
-
   font-size:16px;
-
   font-family:'Poppins',sans-serif;
-
 }
 
 .guardar-btn{
-
   margin-top:15px;
-
   padding:13px 18px;
-
   border:none;
-
   border-radius:15px;
-
   cursor:pointer;
-
   background:linear-gradient(135deg,var(--primary),var(--primary2));
-
   color:white;
-
   font-weight:800;
-
 }
 
 #guardado-msg{
-
   margin-top:12px;
-
   color:var(--primary);
-
   font-weight:700;
-
 }
 
 /* ================= MODAL ================= */
 
 .modal-overlay{
-
   position:fixed;
   inset:0;
-
   background:rgba(0,0,0,0.7);
-
   display:none;
-
   justify-content:center;
   align-items:center;
-
 }
 
 .modal-overlay.open{
@@ -406,44 +292,27 @@ section h3{
 }
 
 .modal{
-
   width:90%;
   max-width:700px;
-
   background:white;
-
   padding:20px;
-
   border-radius:24px;
-
 }
 
 .modal img{
-
   width:100%;
-
   border-radius:18px;
-
 }
 
 .icon-btn{
-
   margin-top:15px;
-
   padding:12px 16px;
-
   border:none;
-
   border-radius:14px;
-
   background:var(--primary);
-
   color:white;
-
   font-weight:800;
-
   cursor:pointer;
-
 }
 
 /* ================= RESPONSIVE ================= */
@@ -566,101 +435,59 @@ Recuerdo especial
 <div class="galeria">
 
 <div class="foto">
-
 <img src="ojito.jpeg">
-
-<div class="texto">
-Tu mirada 😍
-</div>
-
+<div class="texto">Tu mirada 😍</div>
 <div class="frase">
 Tus ojos son mi lugar favorito en el mundo 💙
 </div>
-
 </div>
 
 <div class="foto">
-
 <img src="besito.jpeg">
-
-<div class="texto">
-Nuestros besitos 💋
-</div>
-
+<div class="texto">Nuestros besitos 💋</div>
 <div class="frase">
 Cada beso tuyo se queda guardado en mi corazón ✨
 </div>
-
 </div>
 
 <div class="foto">
-
 <img src="besito1.jpeg">
-
-<div class="texto">
-Momentos inolvidables 💖
-</div>
-
+<div class="texto">Momentos inolvidables 💖</div>
 <div class="frase">
 Contigo hasta los momentos pequeños se vuelven mágicos 💫
 </div>
-
 </div>
 
 <div class="foto">
-
 <img src="espejo.jpeg">
-
-<div class="texto">
-Juntos 💕
-</div>
-
+<div class="texto">Juntos 💕</div>
 <div class="frase">
 Me encanta vernos juntos porque eres mi felicidad 🥰
 </div>
-
 </div>
 
 <div class="foto">
-
 <img src="fiesta.jpeg">
-
-<div class="texto">
-Nuestra fiesta ✨
-</div>
-
+<div class="texto">Nuestra fiesta ✨</div>
 <div class="frase">
 No importa dónde estemos, contigo siempre es especial 🎉
 </div>
-
 </div>
 
 <div class="foto">
-
 <img src="lindos.jpeg">
-
-<div class="texto">
-Qué lindos 💞
-</div>
-
+<div class="texto">Qué lindos 💞</div>
 <div class="frase">
 Eres la persona más hermosa que mis ojos pudieron encontrar 💖
 </div>
-
 </div>
 
 <div class="foto">
-
 <img src="manos.jpeg">
-
-<div class="texto">
-Tomados de la mano 🤍
-</div>
-
+<div class="texto">Tomados de la mano 🤍</div>
 <div class="frase">
 Mientras sea contigo quiero caminar toda la vida ✨
 </div>
-
 </div>
 
 </div>
@@ -717,15 +544,28 @@ Cerrar
 function login(){
 
   const usuario =
-  document.getElementById("usuario").value
+  document
+  .getElementById("usuario")
+  .value
+  .trim()
+  .toLowerCase()
 
   const password =
-  document.getElementById("password").value
+  document
+  .getElementById("password")
+  .value
+  .trim()
+
+  const userCorrecto =
+  "teamo27"
+
+  const passCorrecta =
+  "102709"
 
   if(
-    usuario === "miamor"
+    usuario === userCorrecto
     &&
-    password === "102709"
+    password === passCorrecta
   ){
 
     document.getElementById(
@@ -741,7 +581,7 @@ function login(){
     document.getElementById(
       "error"
     ).innerText =
-    "Usuario o contraseña incorrectos"
+    "Usuario o contraseña incorrectos 💔"
 
   }
 
@@ -841,10 +681,10 @@ overlay.addEventListener("click",(e)=>{
 <script>
 
 const BIN_ID =
-6a002424adc21f119a7b2436
+"TU_BIN_ID"
 
 const API_KEY =
-$2a$10$6Sno123
+"TU_API_KEY"
 
 const diario =
 document.getElementById("diario")
