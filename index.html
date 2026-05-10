@@ -4,21 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>La mujer que amo</title>
+<title>La mujer que amo 💖</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
-:root {
-  --bg1: #f8e1f4;
-  --bg2: #e0c3fc;
-  --primary: #5a0f4f;
-  --text: #6d4c6d;
-  --card: rgba(255, 255, 255, 0.72);
-  --card-strong: rgba(255, 255, 255, 0.9);
-  --shadow: 0 18px 50px rgba(0, 0, 0, 0.16);
-  --radius: 22px;
+:root{
+  --primary:#5a0f4f;
+  --primary2:#b83db3;
+  --text:#5c3a5c;
+  --card:rgba(255,255,255,0.75);
+  --shadow-sm:0 10px 25px rgba(0,0,0,0.10);
+  --shadow-md:0 18px 50px rgba(0,0,0,0.18);
+  --radius:22px;
 }
 
 *{
@@ -29,102 +28,193 @@
 
 body{
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(to right,var(--bg1),var(--bg2));
-  color:var(--text);
   min-height:100vh;
-  text-align:center;
+  color:var(--text);
+  overflow-x:hidden;
+  background:linear-gradient(135deg,#f8e1f4,#e0c3fc);
+  position:relative;
 }
 
-/* LOGIN */
+/* ================= COLLAGE ================= */
+
+.background-collage{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  z-index:-2;
+}
+
+.background-collage::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.20);
+  backdrop-filter:blur(2px);
+}
+
+.background-collage img{
+  position:absolute;
+
+  width:220px;
+  height:220px;
+
+  object-fit:cover;
+
+  border-radius:24px;
+
+  box-shadow:0 12px 35px rgba(0,0,0,0.18);
+
+  border:4px solid rgba(255,255,255,0.6);
+
+  transform:rotate(var(--rotate));
+
+  opacity:0.95;
+}
+
+/* POSICIONES */
+
+.c1{top:2%;left:2%;--rotate:-8deg;}
+.c2{top:8%;left:25%;--rotate:6deg;}
+.c3{top:5%;right:12%;--rotate:-5deg;}
+.c4{top:30%;left:8%;--rotate:8deg;}
+
+.c5{top:35%;left:38%;--rotate:-6deg;}
+.c6{top:30%;right:5%;--rotate:7deg;}
+.c7{bottom:18%;left:4%;--rotate:-7deg;}
+.c8{bottom:10%;left:30%;--rotate:5deg;}
+
+.c9{bottom:12%;right:10%;--rotate:-8deg;}
+.c10{top:55%;right:28%;--rotate:6deg;}
+.c11{top:60%;left:18%;--rotate:-5deg;}
+.c12{bottom:2%;right:35%;--rotate:7deg;}
+
+/* ================= LOGIN ================= */
 
 #loginScreen{
   position:fixed;
   inset:0;
-  background:linear-gradient(to right,var(--bg1),var(--bg2));
-  display:flex;
-  justify-content:center;
-  align-items:center;
+
   z-index:9999;
+
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+
+  padding:30px;
+
+  background:rgba(255,255,255,0.04);
+
+  backdrop-filter:blur(2px);
 }
 
-.login-box{
-  width:330px;
-  background:white;
-  padding:35px;
-  border-radius:25px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+.login-shell{
+  width:100%;
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
 }
 
-.login-box h2{
+.login-card{
+  width:380px;
+  max-width:95vw;
+
+  padding:32px;
+
+  border-radius:28px;
+
+  background:rgba(255,255,255,0.72);
+
+  box-shadow:var(--shadow-md);
+
+  backdrop-filter:blur(14px);
+
+  border:1px solid rgba(255,255,255,0.5);
+}
+
+.login-card h2{
   color:var(--primary);
-  margin-bottom:20px;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  margin-bottom:18px;
+  color:rgba(90,15,79,0.75);
+  font-weight:600;
 }
 
 .login-box input{
   width:100%;
-  padding:13px;
+  padding:14px;
+
   margin:10px 0;
+
   border:none;
-  border-radius:12px;
-  background:#f2f2f2;
-  font-size:16px;
+
+  border-radius:15px;
+
+  background:rgba(255,255,255,0.9);
+
+  outline:none;
+
+  font-size:15px;
 }
 
 .login-box button{
   width:100%;
-  padding:13px;
+  margin-top:14px;
+  padding:14px;
   border:none;
-  border-radius:12px;
-  background:#7b1b67;
-  color:white;
+  border-radius:15px;
   cursor:pointer;
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:white;
+  font-weight:800;
   font-size:16px;
-  margin-top:10px;
-}
-
-.login-box button:hover{
-  background:#5a0f4f;
 }
 
 #error{
-  color:red;
-  margin-top:10px;
+  color:#d11b4a;
+  margin-top:12px;
+  font-weight:700;
+  min-height:22px;
 }
 
-/* PAGINA */
+/* ================= CONTENIDO ================= */
 
 .container{
-  width:min(1050px,92vw);
+  width:min(1100px,92vw);
   margin:auto;
-  padding:28px 0 60px;
+  padding:30px 0 70px;
   display:none;
 }
 
 header{
-  padding:22px 0 8px;
+  text-align:center;
 }
 
 h1{
   font-family:'Playfair Display',serif;
-  font-size:clamp(2rem,4vw,3rem);
-  margin:12px 0;
+  font-size:clamp(2rem,4vw,3.5rem);
   color:var(--primary);
+  margin-bottom:10px;
 }
 
 header p{
   font-size:1.1rem;
+  font-weight:600;
 }
 
 .heroCard{
-  margin:22px 0 18px;
+  margin-top:24px;
   background:var(--card);
   border-radius:var(--radius);
-  padding:22px;
+  padding:25px;
+  box-shadow:var(--shadow-sm);
+
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:16px;
+  gap:20px;
   align-items:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.12);
 }
 
 .heroActions{
@@ -135,13 +225,13 @@ header p{
 }
 
 .btn{
+  padding:13px 18px;
   border:none;
-  cursor:pointer;
-  padding:12px 16px;
-  border-radius:14px;
-  font-weight:600;
-  color:#fff;
+  border-radius:16px;
   background:linear-gradient(135deg,#7b1b67,#c45bb8);
+  color:white;
+  font-weight:800;
+  cursor:pointer;
 }
 
 .btn.secondary{
@@ -149,68 +239,102 @@ header p{
   color:var(--primary);
 }
 
+/* ================= GALERIA ================= */
+
+section{
+  margin-top:28px;
+}
+
+section h3{
+  margin-bottom:18px;
+  color:var(--primary);
+}
+
 .galeria{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
-  margin-top:20px;
 }
 
 .foto{
-  position:relative;
   overflow:hidden;
   border-radius:22px;
-  box-shadow:var(--shadow);
+  background:white;
+  box-shadow:var(--shadow-sm);
 }
 
 .foto img{
   width:100%;
-  height:220px;
+  height:240px;
   object-fit:cover;
+  transition:.4s;
+}
+
+.foto:hover img{
+  transform:scale(1.06);
 }
 
 .texto{
-  position:absolute;
-  bottom:0;
-  width:100%;
   padding:14px;
-  background:rgba(0,0,0,0.6);
+  background:linear-gradient(135deg,#7b1b67,#c45bb8);
   color:white;
+  font-weight:800;
+  text-align:center;
 }
 
-.cards{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-  margin-top:20px;
-}
+/* FRASES */
 
-.card{
-  background:var(--card);
-  border-radius:22px;
+.frase{
   padding:16px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  text-align:center;
+  font-size:15px;
+  font-weight:600;
+  color:#6b4d6b;
+  line-height:1.5;
 }
 
-.card img{
+/* ================= DIARIO ================= */
+
+.diario-box{
+  background:rgba(255,255,255,0.80);
+  padding:24px;
+  border-radius:24px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.12);
+  backdrop-filter:blur(10px);
+}
+
+#diario{
   width:100%;
-  height:220px;
-  object-fit:cover;
+  min-height:220px;
+  border:none;
+  outline:none;
+  resize:vertical;
+  padding:18px;
   border-radius:18px;
+  font-size:16px;
+  font-family:'Poppins',sans-serif;
+  background:rgba(255,255,255,0.9);
+  color:#5c3a5c;
 }
 
-video{
-  width:100%;
-  border-radius:18px;
-  margin-top:10px;
+.guardar-btn{
+  margin-top:16px;
+  padding:13px 18px;
+  border:none;
+  border-radius:16px;
+  background:linear-gradient(135deg,#7b1b67,#c45bb8);
+  color:white;
+  font-weight:800;
+  cursor:pointer;
 }
 
-.footerMsg{
-  background:white;
-  padding:20px;
-  border-radius:22px;
-  margin-top:20px;
+#guardado-msg{
+  margin-top:12px;
+  color:#7b1b67;
+  font-weight:700;
 }
+
+/* ================= MODAL ================= */
 
 .modal-overlay{
   position:fixed;
@@ -227,35 +351,43 @@ video{
 }
 
 .modal{
-  background:white;
-  padding:20px;
-  border-radius:22px;
   width:90%;
   max-width:700px;
+  background:white;
+  padding:20px;
+  border-radius:26px;
 }
 
 .modal img{
   width:100%;
-  border-radius:18px;
+  border-radius:20px;
 }
 
 .icon-btn{
-  margin-top:15px;
-  padding:10px 15px;
+  margin-top:14px;
+  padding:12px 16px;
   border:none;
-  border-radius:12px;
-  cursor:pointer;
+  border-radius:15px;
   background:#7b1b67;
   color:white;
+  font-weight:800;
+  cursor:pointer;
 }
+
+/* RESPONSIVE */
 
 @media(max-width:900px){
 
-  .galeria{
-    grid-template-columns:1fr;
+  .background-collage img{
+    width:140px;
+    height:140px;
   }
 
-  .cards{
+  #loginScreen{
+    justify-content:center;
+  }
+
+  .galeria{
     grid-template-columns:1fr;
   }
 
@@ -270,27 +402,58 @@ video{
 
 <body>
 
-<!-- LOGIN -->
+<!-- ================= COLLAGE ================= -->
 
-<div id="loginScreen">
+<div class="background-collage">
 
-  <div class="login-box">
+<img src="ojito.jpeg" class="c1">
+<img src="besito.jpeg" class="c2">
+<img src="besito1.jpeg" class="c3">
+<img src="foto.jpeg" class="c4">
 
-    <h2>Acceso Privado 💖</h2>
+<img src="espejo.jpeg" class="c5">
+<img src="fiesta.jpeg" class="c6">
+<img src="lindos.jpeg" class="c7">
+<img src="manos.jpeg" class="c8">
 
-    <input type="text" id="usuario" placeholder="Usuario">
-
-    <input type="password" id="password" placeholder="Contraseña">
-
-    <button onclick="login()">Entrar</button>
-
-    <p id="error"></p>
-
-  </div>
+<img src="espejo.jpeg" class="c9">
+<img src="fiesta.jpeg" class="c10">
+<img src="lindos.jpeg" class="c11">
+<img src="manos.jpeg" class="c12">
 
 </div>
 
-<!-- PAGINA -->
+<!-- ================= LOGIN ================= -->
+
+<div id="loginScreen">
+
+<div class="login-shell">
+
+<div class="login-card login-box">
+
+<h2>Acceso Privado 💖</h2>
+
+<div class="subtitle">
+Solo para nosotros ✨
+</div>
+
+<input type="text" id="usuario" placeholder="Usuario">
+
+<input type="password" id="password" placeholder="Contraseña">
+
+<button onclick="login()">
+Entrar
+</button>
+
+<p id="error"></p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= CONTENIDO ================= -->
 
 <div class="container" id="pagina">
 
@@ -304,17 +467,26 @@ video{
 
 <div>
 <h3>Toca un botón 💖</h3>
-<p>Y aparece una foto nuestra 💙</p>
+<p>Y aparecerá una foto especial 💙</p>
 </div>
 
 <div class="heroActions">
-<button class="btn" data-open-modal>Ver nuestra foto</button>
-<button class="btn secondary" data-open-modal>Recuerdo especial</button>
+
+<button class="btn" data-open-modal>
+Ver nuestra foto
+</button>
+
+<button class="btn secondary" data-open-modal>
+Recuerdo especial
+</button>
+
 </div>
 
 </div>
 
 </header>
+
+<!-- ================= GALERIA ================= -->
 
 <section>
 
@@ -323,75 +495,133 @@ video{
 <div class="galeria">
 
 <div class="foto">
+
 <img src="ojito.jpeg">
-<div class="texto">Tu mirada 😍</div>
+
+<div class="texto">
+Miradas que enamoran cada dia 😍
+</div>
+
+<div class="frase">
+Tus ojos son mi lugar favorito en el mundo 💙
+</div>
+
 </div>
 
 <div class="foto">
+
 <img src="besito.jpeg">
-<div class="texto">Nuestros besitos 💋</div>
+
+<div class="texto">
+Nuestros besitos 💋
+</div>
+
+<div class="frase">
+Cada beso tuyo se queda guardado en mi corazón ✨
+</div>
+
 </div>
 
 <div class="foto">
+
 <img src="besito1.jpeg">
-<div class="texto">Momentos inolvidables 💙</div>
+
+<div class="texto">
+Momentos inolvidables 💖
+</div>
+
+<div class="frase">
+Contigo hasta los momentos pequeños se vuelven mágicos 💫
+</div>
+
+</div>
+
+<div class="foto">
+
+<img src="espejo.jpeg">
+
+<div class="texto">
+Juntos ❤
+</div>
+
+<div class="frase">
+Me encanta vernos juntos porque eres mi felicidad 🥰
+</div>
+
+</div>
+
+<div class="foto">
+
+<img src="fiesta.jpeg">
+
+<div class="texto">
+Nuestra fiesta 😍
+</div>
+
+<div class="frase">
+No importa dónde estemos, contigo siempre es especial 🎉
+</div>
+
+</div>
+
+<div class="foto">
+
+<img src="lindos.jpeg">
+
+<div class="texto">
+Qué lindos 💙
+</div>
+
+<div class="frase">
+Eres la persona más hermosa que mis ojos pudieron encontrar 💙
+</div>
+
+</div>
+
+<div class="foto">
+
+<img src="manos.jpeg">
+
+<div class="texto">
+De la mano siempre 💙
+</div>
+
+<div class="frase">
+Mientras sea contigo quiero caminar toda la vida ✨
+</div>
+
 </div>
 
 </div>
 
 </section>
+
+<!-- ================= DIARIO ================= -->
 
 <section>
 
-<h3>Nuestros momentos 💙</h3>
+<h3>Nuestro diario 💌</h3>
 
-<div class="cards">
+<div class="diario-box">
 
-<div class="card">
+<textarea
+id="diario"
+placeholder="Escribe aquí todo lo que sientes por mi... 💙">
+</textarea>
 
-<img src="ojito.jpeg">
+<button class="guardar-btn" onclick="guardarTexto()">
+Guardar 💾
+</button>
 
-<h4>Inicio 💙</h4>
-
-<p>Un comienzo bonito lleno de amor.</p>
-
-<video controls>
-<source src="video.mp4" type="video/mp4">
-</video>
-
-</div>
-
-<div class="card">
-
-<img src="besito.jpeg">
-
-<h4>Especial 🥰</h4>
-
-<p>Risas, abrazos y besitos.</p>
-
-<video controls>
-<source src="mi mujer.mp4" type="video/mp4">
-</video>
-
-</div>
+<p id="guardado-msg"></p>
 
 </div>
 
 </section>
 
-<section>
-
-<h3>Para siempre 💍</h3>
-
-<div class="footerMsg">
-Prometo seguir creando recuerdos contigo 💙
 </div>
 
-</section>
-
-</div>
-
-<!-- MODAL -->
+<!-- ================= MODAL ================= -->
 
 <div class="modal-overlay" id="modalOverlay">
 
@@ -399,7 +629,9 @@ Prometo seguir creando recuerdos contigo 💙
 
 <img src="foto.jpeg" id="modalImage">
 
-<button class="icon-btn" id="cerrar">Cerrar</button>
+<button class="icon-btn" id="cerrar">
+Cerrar
+</button>
 
 </div>
 
@@ -411,18 +643,22 @@ Prometo seguir creando recuerdos contigo 💙
 
 function login(){
 
-  const usuario = document.getElementById('usuario').value;
-  const password = document.getElementById('password').value;
+  const usuario =
+  document.getElementById("usuario").value;
 
-  if(usuario === 'miamor' && password === '102709'){
+  const password =
+  document.getElementById("password").value;
 
-    document.getElementById('loginScreen').style.display = 'none';
+  if(usuario === "miamor" && password === "102709"){
 
-    document.getElementById('pagina').style.display = 'block';
+    document.getElementById("loginScreen").style.display = "none";
+
+    document.getElementById("pagina").style.display = "block";
 
   }else{
 
-    document.getElementById('error').innerText = 'Usuario o contraseña incorrectos';
+    document.getElementById("error").innerText =
+    "Usuario o contraseña incorrectos";
 
   }
 
@@ -430,19 +666,29 @@ function login(){
 
 /* MODAL */
 
-const overlay = document.getElementById('modalOverlay');
+const overlay =
+document.getElementById("modalOverlay");
 
-const modalImg = document.getElementById('modalImage');
+const modalImg =
+document.getElementById("modalImage");
 
-const botones = document.querySelectorAll('[data-open-modal]');
+const botones =
+document.querySelectorAll("[data-open-modal]");
 
-const cerrar = document.getElementById('cerrar');
+const cerrar =
+document.getElementById("cerrar");
 
 const imagenes = [
-  'foto.jpeg',
-  'besito.jpeg',
-  'besito1.jpeg',
-  'ojito.jpeg'
+
+  "foto.jpeg",
+  "besito.jpeg",
+  "besito1.jpeg",
+  "ojito.jpeg",
+  "espejo.jpeg",
+  "fiesta.jpeg",
+  "lindos.jpeg",
+  "manos.jpeg"
+
 ];
 
 let ultima = -1;
@@ -453,7 +699,8 @@ function siguienteImagen(){
 
   while(nueva === ultima){
 
-    nueva = Math.floor(Math.random() * imagenes.length);
+    nueva =
+    Math.floor(Math.random()*imagenes.length);
 
   }
 
@@ -467,25 +714,25 @@ function abrirModal(){
 
   modalImg.src = siguienteImagen();
 
-  overlay.classList.add('open');
+  overlay.classList.add("open");
 
 }
 
 function cerrarModal(){
 
-  overlay.classList.remove('open');
+  overlay.classList.remove("open");
 
 }
 
-botones.forEach(btn => {
+botones.forEach(btn=>{
 
-  btn.addEventListener('click', abrirModal);
+  btn.addEventListener("click",abrirModal);
 
 });
 
-cerrar.addEventListener('click', cerrarModal);
+cerrar.addEventListener("click",cerrarModal);
 
-overlay.addEventListener('click', (e)=>{
+overlay.addEventListener("click",(e)=>{
 
   if(e.target === overlay){
 
@@ -494,6 +741,43 @@ overlay.addEventListener('click', (e)=>{
   }
 
 });
+
+/* ================= DIARIO ================= */
+
+const diario =
+document.getElementById("diario");
+
+window.addEventListener("load",()=>{
+
+  const textoGuardado =
+  localStorage.getItem("nuestroDiario");
+
+  if(textoGuardado){
+
+    diario.value = textoGuardado;
+
+  }
+
+});
+
+function guardarTexto(){
+
+  localStorage.setItem(
+    "nuestroDiario",
+    diario.value
+  );
+
+  document.getElementById("guardado-msg")
+  .innerText = "Texto guardado 💖";
+
+  setTimeout(()=>{
+
+    document.getElementById("guardado-msg")
+    .innerText = "";
+
+  },2000);
+
+}
 
 </script>
 
