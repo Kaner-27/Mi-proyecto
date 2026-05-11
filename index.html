@@ -1,720 +1,942 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La mujer que amo 💖</title>
 
-<title>La mujer que amo 💖</title>
+  <style>
+    :root{
+      --primary:#7b1b67;
+      --primary2:#c45bb8;
+      --text:#5c3a5c;
+      --card: rgba(255,255,255,.78);
+      --shadow: 0 18px 50px rgba(0,0,0,.14);
+      --radius: 22px;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    *{ box-sizing:border-box; margin:0; padding:0; }
 
-<style>
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg,#f8e1f4,#e0c3fc);
+      overflow-x:hidden;
+      color:var(--text);
+    }
 
-:root{
-  --primary:#7b1b67;
-  --primary2:#c45bb8;
-  --text:#5c3a5c;
-}
+    .background-collage{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      overflow:hidden;
+      pointer-events:none;
+    }
+    .background-collage::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(255,255,255,0.18);
+      backdrop-filter: blur(2px);
+    }
+    .background-collage img{
+      position:absolute;
+      width:220px;
+      height:220px;
+      object-fit:cover;
+      border-radius:24px;
+      border:4px solid rgba(255,255,255,0.5);
+      box-shadow:0 10px 30px rgba(0,0,0,0.18);
+      transform-origin:center;
+    }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+    .c1{top:2%;left:2%;transform:rotate(-8deg);}
+    .c2{top:5%;left:25%;transform:rotate(6deg);}
+    .c3{top:4%;right:12%;transform:rotate(-5deg);}
+    .c4{top:28%;left:6%;transform:rotate(8deg);}
+    .c5{top:35%;left:35%;transform:rotate(-6deg);}
+    .c6{top:30%;right:5%;transform:rotate(7deg);}
+    .c7{bottom:18%;left:4%;transform:rotate(-7deg);}
+    .c8{bottom:10%;left:30%;transform:rotate(5deg);}
+    .c9{bottom:12%;right:10%;transform:rotate(-8deg);}
+    .c10{top:55%;right:28%;transform:rotate(6deg);}
+    .c11{top:60%;left:18%;transform:rotate(-5deg);}
+    .c12{bottom:2%;right:35%;transform:rotate(7deg);}
 
-body{
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#f8e1f4,#e0c3fc);
-  overflow-x:hidden;
-  color:var(--text);
-}
+    /* Canvas hearts */
+    #heartsCanvas{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+    }
 
-/* ================= COLLAGE ================= */
+    /* Layout */
+    .app{
+      width:min(1120px,92vw);
+      margin:0 auto;
+      padding:28px 0 80px;
+    }
 
-.background-collage{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  overflow:hidden;
-}
+    header{
+      text-align:center;
+      margin-top:14px;
+    }
 
-.background-collage::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(255,255,255,0.20);
-  backdrop-filter:blur(2px);
-}
+    .title{
+      font-size:clamp(2rem,4vw,3.2rem);
+      color:var(--primary);
+      font-weight:900;
+      letter-spacing:.2px;
+    }
 
-.background-collage img{
-  position:absolute;
-  width:220px;
-  height:220px;
-  object-fit:cover;
-  border-radius:24px;
-  border:4px solid rgba(255,255,255,0.5);
-  box-shadow:0 10px 30px rgba(0,0,0,0.18);
-}
+    .subtitle{
+      margin-top:10px;
+      font-weight:650;
+      color:rgba(92,58,92,.95);
+    }
 
-/* POSICIONES */
+    .topbar{
+      margin-top:22px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
 
-.c1{top:2%;left:2%;transform:rotate(-8deg);}
-.c2{top:5%;left:25%;transform:rotate(6deg);}
-.c3{top:4%;right:12%;transform:rotate(-5deg);}
-.c4{top:28%;left:6%;transform:rotate(8deg);}
-.c5{top:35%;left:35%;transform:rotate(-6deg);}
-.c6{top:30%;right:5%;transform:rotate(7deg);}
-.c7{bottom:18%;left:4%;transform:rotate(-7deg);}
-.c8{bottom:10%;left:30%;transform:rotate(5deg);}
-.c9{bottom:12%;right:10%;transform:rotate(-8deg);}
-.c10{top:55%;right:28%;transform:rotate(6deg);}
-.c11{top:60%;left:18%;transform:rotate(-5deg);}
-.c12{bottom:2%;right:35%;transform:rotate(7deg);}
+    .chip{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.65);
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
 
-/* ================= LOGIN ================= */
+    .chip strong{ color:var(--primary); }
 
-#loginScreen{
-  position:fixed;
-  inset:0;
-  display:flex;
-  justify-content:flex-end;
-  align-items:center;
-  padding:30px;
-  backdrop-filter:blur(2px);
-}
+    .card{
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.65);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+    }
 
-.login-card{
-  width:380px;
-  max-width:95vw;
-  background:rgba(255,255,255,0.75);
-  padding:32px;
-  border-radius:28px;
-  backdrop-filter:blur(14px);
-  box-shadow:0 15px 40px rgba(0,0,0,0.18);
-}
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      align-items:start;
+    }
 
-.login-card h2{
-  color:var(--primary);
-  margin-bottom:10px;
-}
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+    }
 
-.subtitle{
-  margin-bottom:20px;
-  font-weight:600;
-}
+    /* Login overlay */
+    #loginScreen{
+      position:fixed;
+      inset:0;
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      padding:30px;
+      backdrop-filter:blur(4px);
+      z-index:50;
+    }
 
-.login-card input{
-  width:100%;
-  padding:14px;
-  margin:10px 0;
-  border:none;
-  border-radius:15px;
-  outline:none;
-  background:white;
-}
+    .login-card{
+      width:420px;
+      max-width:95vw;
+      background: rgba(255,255,255,.78);
+      padding:26px;
+      border-radius:28px;
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: var(--shadow);
+    }
 
-.login-card button{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:15px;
-  margin-top:14px;
-  cursor:pointer;
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
-  color:white;
-  font-weight:800;
-  font-size:16px;
-}
+    .login-card h2{
+      color:var(--primary);
+      margin-bottom:8px;
+      font-size:1.4rem;
+    }
 
-#error{
-  color:#d11b4a;
-  margin-top:10px;
-  font-weight:700;
-}
+    .login-card .help{ font-weight:600; color:rgba(92,58,92,.95); margin-bottom:18px; }
 
-/* ================= CONTENIDO ================= */
+    .login-card input{
+      width:100%;
+      padding:14px;
+      margin:10px 0;
+      border: 1px solid rgba(123,27,103,.12);
+      border-radius:16px;
+      outline:none;
+      background:white;
+      font-size:1rem;
+    }
 
-.container{
-  width:min(1100px,92vw);
-  margin:auto;
-  padding:30px 0 70px;
-  display:none;
-}
+    .btn{
+      padding:12px 16px;
+      border:none;
+      border-radius:16px;
+      cursor:pointer;
+      background: linear-gradient(135deg,var(--primary),var(--primary2));
+      color:white;
+      font-weight:900;
+      box-shadow: 0 10px 26px rgba(123,27,103,.25);
+      transition: transform .06s ease;
+    }
+    .btn:active{ transform: scale(.99); }
 
-header{
-  text-align:center;
-}
+    .btn.secondary{
+      background: white;
+      color: var(--primary);
+      border: 1px solid rgba(123,27,103,.2);
+      box-shadow: none;
+    }
 
-h1{
-  font-size:clamp(2rem,4vw,3.5rem);
-  font-family:'Playfair Display',serif;
-  color:var(--primary);
-}
+    .row{ display:flex; gap:10px; }
+    .row > *{ flex:1; }
 
-header p{
-  margin-top:10px;
-  font-weight:600;
-}
+    #error{ color:#d11b4a; margin-top:10px; font-weight:800; min-height:18px; }
 
-/* ================= HERO ================= */
+    /* Hero */
+    .hero{
+      padding:18px;
+      margin-top:18px;
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
 
-.heroCard{
-  margin-top:25px;
-  background:rgba(255,255,255,0.75);
-  padding:25px;
-  border-radius:24px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-  align-items:center;
-}
+    .hero .left{
+      min-width:260px;
+    }
 
-.heroActions{
-  display:flex;
-  gap:12px;
-  justify-content:center;
-  flex-wrap:wrap;
-}
+    .hero h3{
+      color:var(--primary);
+      font-size:1.2rem;
+    }
 
-.btn{
-  padding:13px 18px;
-  border:none;
-  border-radius:16px;
-  cursor:pointer;
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
-  color:white;
-  font-weight:800;
-}
+    .hero p{ margin-top:8px; font-weight:650; }
 
-.btn.secondary{
-  background:white;
-  color:var(--primary);
-}
+    .hero .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
 
-/* ================= GALERIA ================= */
+    /* Gallery */
+    section{ margin-top:16px; }
+    .section-title{ color:var(--primary); font-size:1.05rem; font-weight:900; margin:14px 0 10px; }
 
-section{
-  margin-top:30px;
-}
+    .galeria{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .galeria{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px){
+      .galeria{ grid-template-columns: 1fr; }
+    }
 
-section h3{
-  margin-bottom:18px;
-  color:var(--primary);
-}
+    .foto{ overflow:hidden; border-radius:18px; background: rgba(255,255,255,.9); box-shadow: 0 12px 32px rgba(0,0,0,.10); border:1px solid rgba(255,255,255,.6);}    
+    .foto img{ width:100%; height:240px; object-fit:cover; display:block; }
+    .texto{
+      padding:10px 12px;
+      background: linear-gradient(135deg,var(--primary),var(--primary2));
+      color:white;
+      font-weight:900;
+      text-align:center;
+    }
+    .frase{ padding:12px; text-align:center; font-weight:650; color:rgba(107,77,107,.98); line-height:1.45; }
 
-.galeria{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
+    /* Modal */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.72);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:60;
+      padding:18px;
+    }
+    .modal-overlay.open{ display:flex; }
+    .modal{
+      width: min(820px, 94vw);
+      background: #fff;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow: 0 30px 90px rgba(0,0,0,.45);
+    }
+    .modal img{ width:100%; height:auto; display:block; }
+    .modal-actions{ padding:14px; display:flex; justify-content:flex-end; gap:10px; }
 
-.foto{
-  overflow:hidden;
-  border-radius:22px;
-  background:white;
-  box-shadow:0 10px 25px rgba(0,0,0,0.12);
-}
+    /* Chat */
+    .panel{
+      padding:16px;
+    }
 
-.foto img{
-  width:100%;
-  height:250px;
-  object-fit:cover;
-}
+    .chat-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:10px;
+      margin-bottom:12px;
+      flex-wrap:wrap;
+    }
+    .chat-head h3{ color:var(--primary); font-size:1.05rem; font-weight:950; }
 
-.texto{
-  padding:14px;
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
-  color:white;
-  font-weight:800;
-  text-align:center;
-}
+    .muted{ color:rgba(92,58,92,.85); font-weight:650; font-size:.95rem; }
 
-.frase{
-  padding:16px;
-  text-align:center;
-  font-size:15px;
-  font-weight:600;
-  color:#6b4d6b;
-  line-height:1.5;
-}
+    .notif-status{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
 
-/* ================= DIARIO ================= */
+    .pill{
+      font-size:.9rem;
+      padding:8px 10px;
+      border-radius:999px;
+      border: 1px solid rgba(123,27,103,.18);
+      background: rgba(255,255,255,.6);
+      font-weight:800;
+    }
 
-.diario-box{
-  background:rgba(255,255,255,0.82);
-  padding:25px;
-  border-radius:24px;
-  backdrop-filter:blur(10px);
-}
+    .messages{
+      height: 360px;
+      overflow:auto;
+      padding:12px;
+      border-radius:18px;
+      background: rgba(255,255,255,.6);
+      border: 1px solid rgba(123,27,103,.10);
+    }
 
-#diario{
-  width:100%;
-  min-height:220px;
-  border:none;
-  outline:none;
-  resize:vertical;
-  padding:18px;
-  border-radius:18px;
-  font-size:16px;
-  font-family:'Poppins',sans-serif;
-}
+    .msg{
+      display:flex;
+      margin:10px 0;
+      gap:10px;
+      align-items:flex-end;
+    }
 
-.guardar-btn{
-  margin-top:15px;
-  padding:13px 18px;
-  border:none;
-  border-radius:15px;
-  cursor:pointer;
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
-  color:white;
-  font-weight:800;
-}
+    .bubble{
+      max-width: 78%;
+      padding:10px 12px;
+      border-radius:16px;
+      font-weight:650;
+      line-height:1.35;
+      word-break: break-word;
+      box-shadow: 0 10px 22px rgba(0,0,0,.08);
+    }
 
-#guardado-msg{
-  margin-top:12px;
-  color:var(--primary);
-  font-weight:700;
-}
+    .msg.me{ justify-content:flex-end; }
+    .msg.me .bubble{ background: linear-gradient(135deg,var(--primary),var(--primary2)); color:white; border-top-right-radius:6px; }
 
-/* ================= MODAL ================= */
+    .msg.other .bubble{ background: rgba(255,255,255,.95); color: var(--text); border: 1px solid rgba(123,27,103,.12); border-top-left-radius:6px; }
 
-.modal-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.7);
-  display:none;
-  justify-content:center;
-  align-items:center;
-}
+    .meta{
+      font-size:.75rem;
+      color: rgba(92,58,92,.75);
+      font-weight:800;
+      margin-top:6px;
+    }
 
-.modal-overlay.open{
-  display:flex;
-}
+    .composer{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      align-items:stretch;
+    }
 
-.modal{
-  width:90%;
-  max-width:700px;
-  background:white;
-  padding:20px;
-  border-radius:24px;
-}
+    .composer input{
+      flex:1;
+      padding:12px 14px;
+      border-radius:16px;
+      border: 1px solid rgba(123,27,103,.18);
+      background:white;
+      outline:none;
+      font-size:1rem;
+      font-weight:650;
+    }
 
-.modal img{
-  width:100%;
-  border-radius:18px;
-}
+    .composer button{ width: 160px; }
 
-.icon-btn{
-  margin-top:15px;
-  padding:12px 16px;
-  border:none;
-  border-radius:14px;
-  background:var(--primary);
-  color:white;
-  font-weight:800;
-  cursor:pointer;
-}
+    @media (max-width: 560px){
+      .composer{ flex-direction:column; }
+      .composer button{ width:100%; }
+      .messages{ height: 320px; }
+    }
 
-/* ================= RESPONSIVE ================= */
+    /* Diario -> removido (convertido a Chat) */
 
-@media(max-width:900px){
+    /* Animaciones pro (corazones) */
+    @media (prefers-reduced-motion: reduce){
+      #heartsCanvas{ display:none; }
+    }
 
-  .galeria{
-    grid-template-columns:1fr;
-  }
-
-  .heroCard{
-    grid-template-columns:1fr;
-  }
-
-  #loginScreen{
-    justify-content:center;
-  }
-
-  .background-collage img{
-    width:140px;
-    height:140px;
-  }
-
-}
-
-</style>
+    /* Small fade-in */
+    .fade-in{
+      animation: fadeIn .35s ease both;
+    }
+    @keyframes fadeIn{ from{ opacity:0; transform: translateY(6px);} to{ opacity:1; transform: translateY(0);} }
+  </style>
 </head>
 
 <body>
-
-<!-- ================= COLLAGE ================= -->
-
-<div class="background-collage">
-
-<img src="ojito.jpeg" class="c1">
-<img src="besito.jpeg" class="c2">
-<img src="besito1.jpeg" class="c3">
-<img src="foto.jpeg" class="c4">
-
-<img src="espejo.jpeg" class="c5">
-<img src="fiesta.jpeg" class="c6">
-<img src="lindos.jpeg" class="c7">
-<img src="manos.jpeg" class="c8">
-
-<img src="espejo.jpeg" class="c9">
-<img src="fiesta.jpeg" class="c10">
-<img src="lindos.jpeg" class="c11">
-<img src="manos.jpeg" class="c12">
-
-</div>
-
-<!-- ================= LOGIN ================= -->
-
-<div id="loginScreen">
-
-<div class="login-card">
-
-<h2>Acceso Privado 💖</h2>
-
-<div class="subtitle">
-Solo para nosotros ✨
-</div>
-
-<input type="text" id="usuario" placeholder="Usuario">
-
-<input type="password" id="password" placeholder="Contraseña">
-
-<button onclick="login()">
-Entrar
-</button>
-
-<p id="error"></p>
-
-</div>
-
-</div>
-
-<!-- ================= PAGINA ================= -->
-
-<div class="container" id="pagina">
-
-<header>
-
-<h1>El amor de mi vida 💙</h1>
-
-<p>Cada momento contigo es mi favorito ✨</p>
-
-<div class="heroCard">
-
-<div>
-
-<h3>Toca un botón 💖</h3>
-
-<p>Y aparecerá una foto especial 💙</p>
-
-</div>
-
-<div class="heroActions">
-
-<button class="btn" data-open-modal>
-Ver nuestra foto
-</button>
-
-<button class="btn secondary" data-open-modal>
-Recuerdo especial
-</button>
-
-</div>
-
-</div>
-
-</header>
-
-<!-- ================= GALERIA ================= -->
-
-<section>
-
-<h3>Galería 💫</h3>
-
-<div class="galeria">
-
-<div class="foto">
-<img src="ojito.jpeg">
-<div class="texto">Tu mirada 😍</div>
-<div class="frase">
-Tus ojos son mi lugar favorito en el mundo 💙
-</div>
-</div>
-
-<div class="foto">
-<img src="besito.jpeg">
-<div class="texto">Nuestros besitos 💋</div>
-<div class="frase">
-Cada beso tuyo se queda guardado en mi corazón ✨
-</div>
-</div>
-
-<div class="foto">
-<img src="besito1.jpeg">
-<div class="texto">Momentos inolvidables 💖</div>
-<div class="frase">
-Contigo hasta los momentos pequeños se vuelven mágicos 💫
-</div>
-</div>
-
-<div class="foto">
-<img src="espejo.jpeg">
-<div class="texto">Juntos 💕</div>
-<div class="frase">
-Me encanta vernos juntos porque eres mi felicidad 🥰
-</div>
-</div>
-
-<div class="foto">
-<img src="fiesta.jpeg">
-<div class="texto">Nuestra fiesta ✨</div>
-<div class="frase">
-No importa dónde estemos, contigo siempre es especial 🎉
-</div>
-</div>
-
-<div class="foto">
-<img src="lindos.jpeg">
-<div class="texto">Qué lindos 💞</div>
-<div class="frase">
-Eres la persona más hermosa que mis ojos pudieron encontrar 💖
-</div>
-</div>
-
-<div class="foto">
-<img src="manos.jpeg">
-<div class="texto">Tomados de la mano 🤍</div>
-<div class="frase">
-Mientras sea contigo quiero caminar toda la vida ✨
-</div>
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= DIARIO ================= -->
-
-<section>
-
-<h3>Nuestro diario 💌</h3>
-
-<div class="diario-box">
-
-<textarea
-id="diario"
-placeholder="Escribe algo bonito para tu pareja 💖">
-</textarea>
-
-<button class="guardar-btn" onclick="guardarTexto()">
-Guardar 💾
-</button>
-
-<p id="guardado-msg"></p>
-
-</div>
-
-</section>
-
-</div>
-
-<!-- ================= MODAL ================= -->
-
-<div class="modal-overlay" id="modalOverlay">
-
-<div class="modal">
-
-<img src="foto.jpeg" id="modalImage">
-
-<button class="icon-btn" id="cerrar">
-Cerrar
-</button>
-
-</div>
-
-</div>
-
-<!-- ================= SCRIPT ================= -->
-
-<script>
-
-/* ================= LOGIN ================= */
-
-function login(){
-
-  const usuario =
-  document
-  .getElementById("usuario")
-  .value
-  .trim()
-  .toLowerCase()
-
-  const password =
-  document
-  .getElementById("password")
-  .value
-  .trim()
-
-  const userCorrecto =
-  "teamo27"
-
-  const passCorrecta =
-  "102709"
-
-  if(
-    usuario === userCorrecto
-    &&
-    password === passCorrecta
-  ){
-
-    document.getElementById(
-      "loginScreen"
-    ).style.display = "none"
-
-    document.getElementById(
-      "pagina"
-    ).style.display = "block"
-
-  }else{
-
-    document.getElementById(
-      "error"
-    ).innerText =
-    "Usuario o contraseña incorrectos 💔"
-
-  }
-
-}
-
-/* ================= MODAL ================= */
-
-const overlay =
-document.getElementById("modalOverlay")
-
-const modalImg =
-document.getElementById("modalImage")
-
-const botones =
-document.querySelectorAll("[data-open-modal]")
-
-const cerrar =
-document.getElementById("cerrar")
-
-const imagenes = [
-
-  "foto.jpeg",
-  "besito.jpeg",
-  "besito1.jpeg",
-  "ojito.jpeg",
-  "espejo.jpeg",
-  "fiesta.jpeg",
-  "lindos.jpeg",
-  "manos.jpeg"
-
-]
-
-let ultima = -1
-
-function siguienteImagen(){
-
-  let nueva = ultima
-
-  while(nueva === ultima){
-
-    nueva =
-    Math.floor(
-      Math.random()*imagenes.length
-    )
-
-  }
-
-  ultima = nueva
-
-  return imagenes[nueva]
-
-}
-
-function abrirModal(){
-
-  modalImg.src =
-  siguienteImagen()
-
-  overlay.classList.add("open")
-
-}
-
-function cerrarModal(){
-
-  overlay.classList.remove("open")
-
-}
-
-botones.forEach(btn=>{
-
-  btn.addEventListener(
-    "click",
-    abrirModal
-  )
-
-})
-
-cerrar.addEventListener(
-  "click",
-  cerrarModal
-)
-
-overlay.addEventListener("click",(e)=>{
-
-  if(e.target === overlay){
-
-    cerrarModal()
-
-  }
-
-})
-
-</script>
-
-<!-- ================= JSONBIN ================= -->
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "TU_PROJECT.firebaseapp.com",
-  projectId: "TU_PROJECT_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const diario = document.getElementById("diario");
-
-/* GUARDAR */
-window.guardarTexto = async function () {
-  await setDoc(doc(db, "diario", "amor"), {
-    texto: diario.value
-  });
-
-  document.getElementById("guardado-msg").innerText = "Guardado 💖";
-};
-
-/* CARGAR */
-async function cargarTexto() {
-  const ref = doc(db, "diario", "amor");
-  const snap = await getDoc(ref);
-
-  if (snap.exists()) {
-    diario.value = snap.data().texto;
-  }
-}
-
-cargarTexto();
-</script>
-
+  <canvas id="heartsCanvas" aria-hidden="true"></canvas>
+
+  <!-- ================= COLLAGE ================= -->
+  <div class="background-collage" aria-hidden="true">
+    <img src="ojito.jpeg" class="c1">
+    <img src="besito.jpeg" class="c2">
+    <img src="besito1.jpeg" class="c3">
+    <img src="foto.jpeg" class="c4">
+    <img src="espejo.jpeg" class="c5">
+    <img src="fiesta.jpeg" class="c6">
+    <img src="lindos.jpeg" class="c7">
+    <img src="manos.jpeg" class="c8">
+    <img src="espejo.jpeg" class="c9">
+    <img src="fiesta.jpeg" class="c10">
+    <img src="lindos.jpeg" class="c11">
+    <img src="manos.jpeg" class="c12">
+  </div>
+
+  <!-- ================= LOGIN ================= -->
+  <div id="loginScreen">
+    <div class="login-card fade-in" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <h2 id="loginTitle">Acceso Privado 💖</h2>
+      <div class="help">Solo para nosotros ✨</div>
+
+      <input type="text" id="usuario" placeholder="Usuario" autocomplete="username" />
+      <input type="password" id="password" placeholder="Contraseña" autocomplete="current-password" />
+
+      <div class="row" style="margin-top:12px;">
+        <button class="btn" onclick="login()" style="flex:1;">Entrar</button>
+        <button class="btn secondary" onclick="limpiarAcceso()" style="flex:1;">Reset</button>
+      </div>
+
+      <p id="error" aria-live="polite"></p>
+
+      <div style="margin-top:14px; font-weight:750; font-size:.92rem; color:rgba(92,58,92,.82);">
+    
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= APP ================= -->
+  <div class="app" id="pagina" style="display:none;">
+    <header>
+      <div class="title">El amor de mi vida 💙</div>
+      <div class="subtitle">Cada momento contigo es mi favorito ✨</div>
+
+      <div class="topbar">
+        <div class="chip"><span aria-hidden="true">💌</span><strong>Chat</strong>&nbsp;</div>
+        <div class="chip"><span aria-hidden="true">🔔</span><strong>Notificaciones</strong>&nbsp;</div>
+        <div class="chip"><span aria-hidden="true">💞</span><strong>Animación</strong>&nbsp;</div>
+      </div>
+    </header>
+
+    <div class="hero card">
+      <div class="left">
+        <h3>Toca un botón 💙</h3>
+        <p>Y aparecerá una foto especial para que siempre me recuerdes✨</p>
+      </div>
+      <div class="actions">
+        <button class="btn" data-open-modal>Ver nuestra foto</button>
+        <button class="btn secondary" data-open-modal>Recuerdo especial</button>
+      </div>
+    </div>
+
+  <div class="grid">
+      <!-- Left: Gallery -->
+      <div>
+        <section>
+          <div class="section-title">Galería 💫</div>
+          <div class="galeria">
+
+            <div class="foto" role="button" tabindex="0" data-open-modal>
+              <img src="ojito.jpeg" alt="Tu mirada" />
+              <div class="texto">Tu mirada 😍</div>
+              <div class="frase">Tus ojos son mi lugar favorito en el mundo 💙</div>
+            </div>
+
+            <div class="foto" role="button" tabindex="0" data-open-modal>
+              <img src="besito.jpeg" alt="Nuestros besitos" />
+              <div class="texto">Nuestros besitos 💋</div>
+              <div class="frase">Cada beso tuyo se queda guardado en mi corazón ✨</div>
+            </div>
+
+            <div class="foto" role="button" tabindex="0" data-open-modal>
+              <img src="besito1.jpeg" alt="Momentos inolvidables" />
+              <div class="texto">Momentos inolvidables 💖</div>
+              <div class="frase">Contigo hasta los momentos pequeños se vuelven mágicos 💫</div>
+            </div>
+
+            <div class="foto" role="button" tabindex="0" data-open-modal>
+              <img src="espejo.jpeg" alt="Juntos" />
+              <div class="texto">Juntos 💕</div>
+              <div class="frase">Me encanta vernos juntos porque eres mi felicidad 🥰</div>
+            </div>
+
+            <div class="foto" role="button" tabindex="0" data-open-modal>
+              <img src="fiesta.jpeg" alt="Nuestra fiesta" />
+              <div class="texto">Nuestra fiesta ✨</div>
+              <div class="frase">No importa dónde estemos, contigo siempre es especial 🎉</div>
+            </div>
+
+            <div class="foto" role="button" tabindex="0" data-open-modal>
+              <img src="lindos.jpeg" alt="Qué lindos" />
+              <div class="texto">Qué lindos 💞</div>
+              <div class="frase">Eres la persona más hermosa que mis ojos pudieron encontrar 💖</div>
+            </div>
+
+            <div class="foto" role="button" tabindex="0" data-open-modal>
+              <img src="manos.jpeg" alt="Tomados de la mano" />
+              <div class="texto">Tomados de la mano 🤍</div>
+              <div class="frase">Mientras sea contigo quiero caminar toda la vida ✨</div>
+            </div>
+
+            <div class="foto" role="button" tabindex="0" data-open-modal>
+              <img src="foto.jpeg" alt="Un recuerdo" />
+              <div class="texto">Recuerdo especial 💗</div>
+              <div class="frase">Cada detalle tuyo me hace sonreír ✨</div>
+            </div>
+
+            <div class="foto" role="button" tabindex="0" data-open-modal>
+              <img src="ojito.jpeg" alt="Siempre" />
+              <div class="texto">Siempre 💙</div>
+              <div class="frase">Te elijo, cada día, de nuevo 💖</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right: Chat + Notifications -->
+      <div>
+        <section class="card panel">
+          <div class="chat-head">
+            <div>
+              <h3>Nuestro Chat 💬</h3>
+              <div class="muted"></div>
+            </div>
+          </div>
+
+          <div class="notif-status">
+            <span class="pill" id="notifStatePill">🔔 Estado: desconocido</span>
+            <button class="btn secondary" style="border-radius:16px; padding:10px 12px;" onclick="activarNotificaciones()">
+              Activar notificaciones
+            </button>
+          </div>
+
+          <div class="messages" id="messages" aria-live="polite" aria-label="Mensajes guardados"></div>
+
+          <div class="composer">
+            <input id="messageInput" type="text" placeholder="" maxlength="250" />
+            <button class="btn" onclick="enviarMensaje()">Enviar 💙</button>
+          </div>
+
+          <div style="margin-top:10px; font-weight:800; font-size:.9rem; color:rgba(92,58,92,.85);">
+            Tip: escribe y pulsa Enter.
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL ================= -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal">
+      <img src="foto.jpeg" id="modalImage" alt="Foto especial" />
+      <div class="modal-actions">
+        <button class="btn secondary" id="cerrar">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ================== AUTH (simple local) ================== */
+    const AUTH_KEY = "novia.auth.ok";
+
+    function login(){
+      const usuario = document.getElementById("usuario").value.trim().toLowerCase();
+      const password = document.getElementById("password").value.trim();
+
+      const userCorrecto = "teamo27";
+      const passCorrecta = "102709";
+
+      const errorEl = document.getElementById("error");
+      errorEl.textContent = "";
+
+      if(usuario === userCorrecto && password === passCorrecta){
+        localStorage.setItem(AUTH_KEY, "1");
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("pagina").style.display = "block";
+        // load chat after login
+        initChat();
+        actualizarNotifsEstado();
+      } else {
+        errorEl.textContent = "Usuario o contraseña incorrectos 💔";
+      }
+    }
+
+    function limpiarAcceso(){
+      localStorage.removeItem(AUTH_KEY);
+      location.reload();
+    }
+
+    function autoLogin(){
+      const ok = localStorage.getItem(AUTH_KEY) === "1";
+      if(ok){
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("pagina").style.display = "block";
+        initChat();
+        actualizarNotifsEstado();
+      }
+    }
+
+    /* ================== MODAL ================== */
+    const overlay = document.getElementById("modalOverlay");
+    const modalImg = document.getElementById("modalImage");
+    const cerrar = document.getElementById("cerrar");
+    const botones = document.querySelectorAll("[data-open-modal]");
+
+    const imagenes = [
+      "foto.jpeg",
+      "besito.jpeg",
+      "besito1.jpeg",
+      "ojito.jpeg",
+      "espejo.jpeg",
+      "fiesta.jpeg",
+      "lindos.jpeg",
+      "manos.jpeg"
+    ];
+
+    let ultima = -1;
+
+    function siguienteImagen(){
+      let nueva = ultima;
+      while(nueva === ultima){
+        nueva = Math.floor(Math.random() * imagenes.length);
+      }
+      ultima = nueva;
+      return imagenes[nueva];
+    }
+
+    function abrirModal(){
+      modalImg.src = siguienteImagen();
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden", "false");
+    }
+
+    function cerrarModal(){
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden", "true");
+    }
+
+    botones.forEach(btn => {
+      btn.addEventListener("click", abrirModal);
+      btn.addEventListener("keydown", (e) => {
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          abrirModal();
+        }
+      });
+    });
+
+    cerrar.addEventListener("click", cerrarModal);
+    overlay.addEventListener("click", (e) => {
+      if(e.target === overlay) cerrarModal();
+    });
+
+    /* ================== HEARTS ANIMATION (infinite) ================== */
+    (function hearts(){
+      const canvas = document.getElementById("heartsCanvas");
+      const ctx = canvas.getContext("2d");
+
+      const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if(reduce) return;
+
+      let w, h, dpr;
+      function resize(){
+        dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+        w = canvas.clientWidth = window.innerWidth;
+        h = canvas.clientHeight = window.innerHeight;
+        canvas.width = Math.floor(w * dpr);
+        canvas.height = Math.floor(h * dpr);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+      window.addEventListener("resize", resize, {passive:true});
+      resize();
+
+      const hearts = [];
+      const HEART_COUNT = 55;
+
+      function rand(min,max){ return Math.random()*(max-min)+min; }
+
+      function heartShape(t){
+        // parametric heart (approx)
+        const x = 16*Math.pow(Math.sin(t),3);
+        const y = 13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t);
+        return {x,y};
+      }
+
+      for(let i=0;i<HEART_COUNT;i++){
+        hearts.push({
+          x: rand(0, w),
+          y: rand(-h, h),
+          s: rand(0.6, 1.4),
+          v: rand(0.35, 0.9),
+          drift: rand(-0.25, 0.25),
+          hue: rand(315, 340),
+          rot: rand(0, Math.PI*2),
+          rotSpd: rand(-0.02, 0.02),
+          phase: rand(0, Math.PI*2),
+          life: rand(0, 1)
+        });
+      }
+
+      let last = performance.now();
+      function loop(now){
+        const dt = Math.min(32, now - last);
+        last = now;
+
+        ctx.clearRect(0,0,w,h);
+
+        for(const p of hearts){
+          p.y += p.v * (dt/16);
+          p.x += p.drift * (dt/16);
+          p.rot += p.rotSpd * (dt/16);
+          p.life += 0.002 * (dt/16);
+
+          if(p.y > h + 60){
+            p.y = -60 - rand(0, 200);
+            p.x = rand(0, w);
+            p.s = rand(0.6, 1.4);
+            p.v = rand(0.35, 0.9);
+            p.drift = rand(-0.25, 0.25);
+            p.hue = rand(315, 340);
+            p.phase = rand(0, Math.PI*2);
+          }
+
+          const alpha = Math.max(0, Math.min(1, 1 - (p.life % 1)));
+          const size = 0.7 + p.s;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.globalAlpha = 0.8;
+
+          // draw heart path
+          ctx.beginPath();
+          const steps = 26;
+          for(let i=0;i<=steps;i++){
+            const t = (i/steps) * Math.PI*2;
+            const pt = heartShape(t + p.phase);
+            const px = pt.x * 0.55 * size;
+            const py = -pt.y * 0.55 * size;
+            if(i===0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+          }
+          ctx.closePath();
+
+          const grad = ctx.createLinearGradient(-30, -30, 30, 30);
+          grad.addColorStop(0, `hsla(${p.hue}, 90%, 70%, .95)`);
+          grad.addColorStop(1, `hsla(${p.hue+10}, 90%, 55%, .95)`);
+          ctx.fillStyle = grad;
+          ctx.fill();
+          ctx.restore();
+        }
+
+        requestAnimationFrame(loop);
+      }
+
+      requestAnimationFrame(loop);
+    })();
+
+    /* ================== CHAT + STORAGE ================== */
+    const CHAT_KEY = "novia.chat.messages.v1";
+
+    function formatTime(ts){
+      try{
+        return new Date(ts).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+      } catch{
+        return "";
+      }
+    }
+
+    function loadMessages(){
+      const raw = localStorage.getItem(CHAT_KEY);
+      if(!raw) return [];
+      try{ return JSON.parse(raw) || []; } catch { return []; }
+    }
+
+    function saveMessages(msgs){
+      localStorage.setItem(CHAT_KEY, JSON.stringify(msgs));
+    }
+
+    function renderMessages(msgs){
+      const box = document.getElementById("messages");
+      if(!box) return;
+      box.innerHTML = "";
+
+
+      if(!msgs.length){
+        const empty = document.createElement("div");
+        empty.style.fontWeight = "800";
+        empty.style.color = "rgba(92,58,92,.78)";
+        empty.style.padding = "14px";
+        empty.textContent = "Tu chat se verá aquí… 💌";
+        box.appendChild(empty);
+        return;
+      }
+
+      for(const m of msgs){
+        const wrap = document.createElement("div");
+        wrap.className = "msg " + (m.from === "me" ? "me" : "other");
+
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+        bubble.textContent = m.text;
+
+        // Solo el texto (estilo WhatsApp): sin quién ni hora.
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        meta.textContent = "";
+
+
+        wrap.style.flexDirection = "column";
+        bubble.style.alignSelf = (m.from === "me") ? "flex-end" : "flex-start";
+        meta.style.alignSelf = (m.from === "me") ? "flex-end" : "flex-start";
+
+        wrap.appendChild(bubble);
+        wrap.appendChild(meta);
+        box.appendChild(wrap);
+      }
+
+
+      // scroll to bottom
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function initChat(){
+      const msgs = loadMessages();
+      renderMessages(msgs);
+
+      const input = document.getElementById("messageInput");
+      input.addEventListener("keydown", (e) => {
+        if(e.key === "Enter"){
+          e.preventDefault();
+          enviarMensaje();
+        }
+      });
+    }
+
+    // Respuesta automática desactivada (solo mensajes del usuario).
+    function pushBotReply(){
+      return null;
+    }
+
+
+    async function enviarMensaje(){
+      const input = document.getElementById("messageInput");
+      const text = (input.value || "").trim();
+      if(!text) return;
+
+      const msgs = loadMessages();
+      const newMsg = { from: "me", text, ts: Date.now() };
+      msgs.push(newMsg);
+      saveMessages(msgs);
+      input.value = "";
+
+      renderMessages(msgs);
+
+      // Notificación real
+      notificar("Mensaje enviado 💖", text.slice(0, 80));
+
+      // Sin respuesta automática: el otro celular debe enviar.
+
+    }
+
+    /* ================== NOTIFICATIONS (real) ================== */
+    function actualizarNotifsEstado(){
+      const pill = document.getElementById("notifStatePill");
+      if(!('Notification' in window)){
+        pill.textContent = "🔕 Notificaciones no soportadas";
+        return;
+      }
+      const state = Notification.permission;
+      const label = state === 'granted' ? 'Habilitadas ✅' : (state === 'denied' ? 'Bloqueadas ❌' : 'Sin permiso ⏳');
+      pill.textContent = '🔔 Estado: ' + label;
+    }
+
+    async function activarNotificaciones(){
+      if(!('Notification' in window)){
+        alert('Este navegador no soporta notificaciones.');
+        return;
+      }
+      try{
+        const perm = await Notification.requestPermission();
+        actualizarNotifsEstado();
+        if(perm === 'granted'){
+          notificar('¡Listo! 💖', 'Las notificaciones están activas.');
+        }
+      } catch(e){
+        console.error(e);
+        actualizarNotifsEstado();
+      }
+    }
+
+    function notificar(title, body){
+      if(!('Notification' in window)) return;
+      if(Notification.permission !== 'granted') return;
+
+      try{
+        new Notification(title, {
+          body,
+          // icon could be any local asset; fallback omitted for offline
+        });
+      } catch(e){
+        console.error(e);
+      }
+    }
+
+    /* ================== Init ================== */
+    (function start(){
+      autoLogin();
+
+      // if logged in, ensure chat is ready
+      if(localStorage.getItem('novia.auth.ok') === '1'){
+        initChat();
+        actualizarNotifsEstado();
+      }
+
+      // Always render the saved chat when the page is already visible
+      // (useful if messages exist before login).
+      window.addEventListener('focus', () => {
+        if(document.getElementById('pagina').style.display !== 'none'){
+          renderMessages(loadMessages());
+        }
+      }, {passive:true});
+    })();
+
+
+    // Expose for inline onclick
+    window.login = login;
+    window.limpiarAcceso = limpiarAcceso;
+    window.enviarMensaje = enviarMensaje;
+    window.activarNotificaciones = activarNotificaciones;
+  </script>
 </body>
 </html>
 
