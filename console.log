@@ -1,0 +1,49 @@
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_PROJECT.firebaseapp.com",
+  projectId: "TU_PROJECT_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const diario = document.getElementById("diario");
+
+/* 💾 GUARDAR */
+window.guardarTexto = async function () {
+  try {
+    await setDoc(doc(db, "diario", "amor"), {
+      texto: diario.value
+    });
+
+    console.log("Guardado OK");
+
+    document.getElementById("guardado-msg").innerText = "Guardado 💖";
+  } catch (e) {
+    console.error("Error guardando:", e);
+  }
+};
+
+/* 📥 CARGAR */
+async function cargarTexto() {
+  try {
+    const ref = doc(db, "diario", "amor");
+    const snap = await getDoc(ref);
+
+    if (snap.exists()) {
+      diario.value = snap.data().texto;
+      console.log("Cargado OK");
+    } else {
+      console.log("No existe aún");
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+cargarTexto();
+</script>
