@@ -678,102 +678,41 @@ overlay.addEventListener("click",(e)=>{
 
 <!-- ================= JSONBIN ================= -->
 
-<script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-const BIN_ID =
-"TU_BIN_ID"
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_PROJECT.firebaseapp.com",
+  projectId: "TU_PROJECT_ID"
+};
 
-const API_KEY =
-"TU_API_KEY"
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-const diario =
-document.getElementById("diario")
+const diario = document.getElementById("diario");
 
-/* ================= CARGAR ================= */
+/* GUARDAR */
+window.guardarTexto = async function () {
+  await setDoc(doc(db, "diario", "amor"), {
+    texto: diario.value
+  });
 
-async function cargarTexto(){
+  document.getElementById("guardado-msg").innerText = "Guardado 💖";
+};
 
-  const response =
-  await fetch(
+/* CARGAR */
+async function cargarTexto() {
+  const ref = doc(db, "diario", "amor");
+  const snap = await getDoc(ref);
 
-    `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`,
-
-    {
-
-      headers:{
-
-        "X-Master-Key":
-        API_KEY
-
-      }
-
-    }
-
-  )
-
-  const data =
-  await response.json()
-
-  diario.value =
-  data.record.texto || ""
-
+  if (snap.exists()) {
+    diario.value = snap.data().texto;
+  }
 }
 
-/* ================= GUARDAR ================= */
-
-async function guardarTexto(){
-
-  await fetch(
-
-    `https://api.jsonbin.io/v3/b/${BIN_ID}`,
-
-    {
-
-      method:"PUT",
-
-      headers:{
-
-        "Content-Type":
-        "application/json",
-
-        "X-Master-Key":
-        API_KEY
-
-      },
-
-      body:JSON.stringify({
-
-        texto:diario.value
-
-      })
-
-    }
-
-  )
-
-  document.getElementById(
-    "guardado-msg"
-  ).innerText =
-  "Guardado 💖"
-
-  setTimeout(()=>{
-
-    document.getElementById(
-      "guardado-msg"
-    ).innerText = ""
-
-  },2000)
-
-}
-
-/* ================= AUTO CARGA ================= */
-
-cargarTexto()
-
-/* ================= TIEMPO REAL ================= */
-
-setInterval(cargarTexto,2000)
-
+cargarTexto();
 </script>
 
 </body>
